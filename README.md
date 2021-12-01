@@ -65,10 +65,10 @@ local function match(key)
 	end
 	return '0'
 end
-
-local a = redis.call('scan', '0', 'MATCH', pattern, 'COUNT', '10')
-
+local a = {}
+a[1] = '0'
 repeat
+	a = redis.call('scan', a[1], 'MATCH', pattern, 'COUNT', '10')
    for k, key in pairs(a[2]) do
 		local res = match(key)
 		if (res ~= '0') 
@@ -76,9 +76,7 @@ repeat
 			return res
 		end
 	end
-	
-   a = redis.call('scan', a[1], 'MATCH', pattern, 'COUNT', '10')
 until( a[1] == [[0]]  )
-return pattern
+return KEYS
 
 ```
