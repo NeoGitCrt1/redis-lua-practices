@@ -1,6 +1,7 @@
 # redis-lua-practices
 ```
 redis-cli.exe -h 119.3.134.54 -n 3 --eval D:\tmp\reduslua.lua
+// -n x 表示使用x的db
 ```
 从指定pattern的key查找指定位置的字符串
 ```
